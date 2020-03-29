@@ -1,0 +1,20 @@
+<h1> Episodios </h1>
+
+{% if results %}
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Fecha</th>
+            <th>Código</th>
+        </tr>
+        {% for episode in results %}
+            <tr>
+                <td>{{ episode.name }}</td>
+                <td>{{ episode.air_date }}</td>
+                <td>{{ episode.episode }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>No hay episodios.</p>
+{% endif %}
