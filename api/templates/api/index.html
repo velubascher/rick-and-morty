@@ -9,7 +9,7 @@
         </tr>
         {% for episode in results %}
             <tr>
-                <td>{{ episode.name }}</td>
+                <td><a href="{% url 'episode' episode.id %}">{{ episode.name }}</a></td>
                 <td>{{ episode.air_date }}</td>
                 <td>{{ episode.episode }}</td>
             </tr>

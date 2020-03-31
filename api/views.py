@@ -7,3 +7,7 @@ import json
 def index(request):
     episodes = get_episodes()
     return render(request, 'api/index.html', {'results': episodes})
+
+def episode(request, episode_id):
+    print(episode_id)
+    return render(request, 'api/episode.html', {'results': episode_id})
