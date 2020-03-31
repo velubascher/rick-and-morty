@@ -1,0 +1,33 @@
+<ul>
+    <li>Nombre: {{name}}</li>
+    <li>Publicación: {{status}}</li>
+    <li>Episodio: {{species}}</li>
+    <li>Episodios:</li>
+        <ul>
+            {% for episode in episodes %}
+            <li><a href="/">{{episode.name}}<a></li>
+            {% endfor %}
+        </ul>
+</ul>
+{% comment %} 
+{
+  "name": "Morty Smith",
+  "status": "Alive",
+  "species": "Human",
+  "type": "",
+  "gender": "Male",
+  "origin": {
+    "name": "Earth",
+    "url": "https://rickandmortyapi.com/api/location/1"
+  },
+  "location": {
+    "name": "Earth",
+    "url": "https://rickandmortyapi.com/api/location/20"
+  },
+  "image": "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
+  "episode": [
+    "https://rickandmortyapi.com/api/episode/1",
+    "https://rickandmortyapi.com/api/episode/2",
+    // ...
+  ],
+} {% endcomment %}

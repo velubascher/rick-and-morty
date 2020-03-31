@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .services import get_episodes
+from .services import get_episodes, get_episode, get_character
 import json
 
 # Create your views here.
@@ -9,5 +9,9 @@ def index(request):
     return render(request, 'api/index.html', {'results': episodes})
 
 def episode(request, episode_id):
-    print(episode_id)
-    return render(request, 'api/episode.html', {'results': episode_id})
+    episodes = get_episode(episode_id)
+    return render(request, 'api/episode.html', episodes)
+
+def character(request, character_id):
+    character = get_character(character_id)
+    return render(request, 'api/character.html', character)

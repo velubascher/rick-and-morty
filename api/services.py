@@ -8,3 +8,33 @@ def get_episodes():
         data = requests.get('https://rickandmortyapi.com/api/episode?page={}'.format(page)).json()
         episodes.extend(data['results'])
     return episodes
+
+def get_episode(id):
+    data = requests.get('https://rickandmortyapi.com/api/episode/{}'.format(id)).json()
+    characters_id = []
+    for url in data['characters']:
+        _id = url.rsplit('/', 1).pop()
+        characters_id.append(int(_id))
+    characters = get_characters(str(characters_id))
+
+    episode = {
+        'name': data['name'],
+        'air_date': data['air_date'],
+        'episode': data['episode'],
+        'characters': characters
+        }
+    return episode
+
+def get_characters(id_list):
+    data = requests.get('https://rickandmortyapi.com/api/character/{}'.format(id_list)).json()
+    return data
+
+def get_character(id):
+    data = requests.get('https://rickandmortyapi.com/api/character/{}'.format(id)).json()
+    episodes_id = []
+    for url in data['episode']:
+        _id = url.rsplit('/', 1).pop()
+        episodes_id.append(int(_id))
+    episodes = requests.get('https://rickandmortyapi.com/api/episode/{}'.format(str(episodes_id))).json()
+    data['episodes'] = episodes
+    return data
