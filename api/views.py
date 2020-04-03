@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .services import get_episodes, get_episode, get_character, get_location
+from .services import get_episodes, get_episode, get_character, get_location, make_search
 import json
 
 # Create your views here.
@@ -19,3 +19,8 @@ def character(request, character_id):
 def location(request, location_id):
     location = get_location(location_id)
     return render(request, 'api/location.html', location)
+
+def search(request, term):
+    results = make_search(term)
+    return render(request, 'api/search.html', results)
+

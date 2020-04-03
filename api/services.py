@@ -2,11 +2,7 @@ import requests
 
 def get_episodes():
     data = requests.get('https://rickandmortyapi.com/api/episode/').json()
-    episodes = data['results']
-    pages = data['info']['pages']
-    for page in range(2, pages + 1):
-        data = requests.get('https://rickandmortyapi.com/api/episode?page={}'.format(page)).json()
-        episodes.extend(data['results'])
+    episodes = pagination(data)
     return episodes
 
 def get_episode(id):
@@ -47,3 +43,19 @@ def get_location(id):
     characters = get_characters(characters_id)
     data['characters'] = characters
     return data
+
+def make_search(term):
+    characters = requests.get('https://rickandmortyapi.com/api/character/?name={}'.format(term)).json()
+    locations = requests.get('https://rickandmortyapi.com/api/location/?name={}'.format(term)).json()
+    episodes = requests.get('https://rickandmortyapi.com/api/episode/?name={}'.format(term)).json()
+    results = {'characters': pagination(characters), 'locations': pagination(locations), 'episodes': pagination(episodes)}
+    return results
+
+def pagination(object):
+    results = object['results']
+    _next = object['info']['next']
+    while _next:
+        data = requests.get(_next).json()
+        results.extend(data['results'])
+        _next = data['info']['next']
+    return results
