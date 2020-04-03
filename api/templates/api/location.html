@@ -1,0 +1,22 @@
+<table>
+  <tr>
+    <td>Nombre</td>
+    <td>{{name}}</td>
+  </tr>
+  <tr>
+    <td>Tipo</td>
+    <td>{{type}}</td>
+  </tr>
+  <tr>
+    <td>Dimension</td>
+    <td>{{dimension}}</td>
+  </tr>
+  <tr>
+    <td rowspan={{characters|length|add:'1'}}>Residentes</td>
+  </tr>
+    {% for resident in characters %}
+    <tr>
+      <td>{{resident.name}}</td>
+    </tr>
+    {% endfor %}
+  </table>

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .services import get_episodes, get_episode, get_character
+from .services import get_episodes, get_episode, get_character, get_location
 import json
 
 # Create your views here.
@@ -15,3 +15,7 @@ def episode(request, episode_id):
 def character(request, character_id):
     character = get_character(character_id)
     return render(request, 'api/character.html', character)
+
+def location(request, location_id):
+    location = get_location(location_id)
+    return render(request, 'api/location.html', location)
