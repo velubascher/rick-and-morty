@@ -37,6 +37,8 @@ def get_character(id):
         episodes_id.append(int(_id))
     episodes = requests.get('https://rickandmortyapi.com/api/episode/{}'.format(str(episodes_id))).json()
     data['episodes'] = episodes
+    data['location']['id'] = data['location']['url'].rsplit('/', 1).pop()
+    data['origin']['id'] = data['origin']['url'].rsplit('/', 1).pop()
     return data
 
 def get_location(id):

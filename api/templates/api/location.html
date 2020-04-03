@@ -16,7 +16,7 @@
   </tr>
     {% for resident in characters %}
     <tr>
-      <td>{{resident.name}}</td>
+        <td><a href="{% url 'character' resident.id %}">{{resident.name}}<a></td>
     </tr>
     {% endfor %}
-  </table>
+</table>

@@ -1,13 +1,24 @@
 <h3>Detalles del episodio<h3>
-<ul>
-    <li>Nombre: {{name}}</li>
-    <li>Publicación: {{air_date}}</li>
-    <li>Episodio: {{episode}}</li>
-    <li>Personajes:</li>
-        <ul>
-            {% for character in characters %}
-            <li><a href="{% url 'character' character.id %}">{{character.name}}<a></li>
-            {% endfor %}
-        </ul>
-</ul>
 
+<table>
+  <tr>
+    <td>Nombre</td>
+    <td>{{name}}</td>
+  </tr>
+  <tr>
+    <td>Publicación</td>
+    <td>{{air_date}}</td>
+  </tr>
+  <tr>
+    <td>Episodio</td>
+    <td>{{episode}}</td>
+  </tr>
+  <tr>
+    <td rowspan={{characters|length|add:'1'}}>Personajes</td>
+  </tr>
+    {% for character in characters %}
+    <tr>
+        <td><a href="{% url 'character' character.id %}">{{character.name}}<a></td>
+    </tr>
+    {% endfor %}
+</table>
