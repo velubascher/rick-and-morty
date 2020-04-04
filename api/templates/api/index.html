@@ -1,25 +1,31 @@
 {% extends 'api/base.html' %}
 
 {% block content %}
-<h1> Episodios </h1>
+<div>
+    <h1> Episodios </h1>
 
-{% if results %}
-    <table>
-        <tr>
-            <th>Nombre</th>
-            <th>Fecha</th>
-            <th>Código</th>
-        </tr>
-        {% for episode in results %}
+    {% if results %}
+        <table class='table table-bordered'>
+        <thead class="thead-dark">
             <tr>
-                <td><a href="{% url 'episode' episode.id %}">{{ episode.name }}</a></td>
-                <td>{{ episode.air_date }}</td>
-                <td>{{ episode.episode }}</td>
+                <th scope='col'>Nombre</th>
+                <th scope='col'>Fecha</th>
+                <th scope='col'>Código</th>
             </tr>
-        {% endfor %}
-    </table>
-{% else %}
-    <p>No hay episodios.</p>
-{% endif %}
+        </thead>
+        <tbody>
+            {% for episode in results %}
+                <tr>
+                    <td><a href="{% url 'episode' episode.id %}">{{ episode.name }}</a></td>
+                    <td>{{ episode.air_date }}</td>
+                    <td>{{ episode.episode }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    {% else %}
+        <p>No hay episodios.</p>
+    {% endif %}
+</div>
 
 {% endblock %}
