@@ -1,0 +1,58 @@
+{% extends 'api/base.html' %}
+
+{% block content %}
+
+<div class="card mx-5">
+  <img src={{image}} class="card-img-top" alt={{name}}>
+  <h5 class="card-header text-center">{{name}}</h5>
+  <div class="card-body">
+    <table class='table table-bordered table-sm'>
+    <tr>
+      <th scope='row'>Nombre</td>
+      <td>{{name}}</td>
+    </tr>
+    <tr>
+      <th scope='row'>Estado</th>
+      <td>{{status}}</td>
+    </tr>
+    <tr>
+      <th scope='row'>Especie</th>
+      <td>{{species}}</td>
+    </tr>
+    <tr>
+      <th scope='row'>Tipo</th>
+      <td>{{type}}</td>
+    </tr>
+    <tr>
+      <th scope='row'>Género</th>
+      <td>{{gender}}</td>
+    </tr>
+    <tr>
+      <th scope='row'>Origen</th>
+      {% if origin.id %}
+        <td><a href="{% url 'location' origin.id %}">{{origin.name}}</a></td>
+      {% else %}
+        <td>unknown</td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th scope='row'>Ubicación</th>
+      {% if location.id %}
+        <td><a href="{% url 'location' location.id %}">{{location.name}}</a></td>
+      {% else %}
+        <td>unknown</td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th scope='row' rowspan={{episode|length|add:'1'}}>Episodios</th>
+    </tr>
+      {% for episode in episodes %}
+      <tr>
+        <td><a href="{% url 'episode' episode.id %}">{{episode.name}}</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+{% endblock %}

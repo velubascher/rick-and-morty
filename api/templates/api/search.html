@@ -1,0 +1,49 @@
+{% extends 'api/base.html' %}
+
+{% block content %}
+
+<div class='results'>
+    <h1>Resultados para "{{term}}"</h1>
+    <p>{{total}} resultados</p>
+
+    <div class='container'>
+    <div class="row">
+
+        {% if characters %}
+        <div class="list-group mx-2">
+            <li class="list-group-item active">
+                Personajes
+            </li>
+            {% for character in characters %}
+                <a href="{% url 'character' character.id %}" class="list-group-item list-group-item-action">{{character.name}}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if locations %}
+        <div class="list-group mx-2">
+            <li class="list-group-item active">
+                Lugares
+            </li>
+            {% for location in locations %}
+                <a href="{% url 'location' location.id %}" class="list-group-item list-group-item-action">{{location.name}}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if episodes %}
+        <div class="list-group mx-2">
+            <li class="list-group-item active">
+                Episodios
+            </li>
+            {% for episode in episodes %}
+                <a href="{% url 'episode' episode.id %}" class="list-group-item list-group-item-action">{{episode.name}}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    
+    </div>
+    </div>
+</div>
+
+{% endblock %}

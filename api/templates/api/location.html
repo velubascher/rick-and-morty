@@ -1,0 +1,33 @@
+{% extends 'api/base.html' %}
+
+{% block content %}
+
+<div class="card w-50">
+  <h5 class="card-header text-center">{{name}}</h5>
+  <div class="card-body">
+    <table class='table table-bordered table-sm'>
+      <tr>
+      <th scope='row'>Nombre</th>
+      <td>{{name}}</td>
+    </tr>
+    <tr>
+      <th scope='row'>Tipo</th>
+      <td>{{type}}</td>
+    </tr>
+    <tr>
+      <th scope='row'>Dimensión</th>
+      <td>{{dimension}}</td>
+    </tr>
+    <tr>
+      <th scope='row' rowspan={{characters|length|add:'1'}}>Residentes</th>
+    </tr>
+      {% for resident in characters %}
+      <tr>
+          <td><a href="{% url 'character' resident.id %}">{{resident.name}}<a></td>
+      </tr>
+      {% endfor %}
+  </table>
+  </div>
+</div>
+
+{% endblock %}

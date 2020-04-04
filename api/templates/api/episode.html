@@ -1,0 +1,34 @@
+{% extends 'api/base.html' %}
+
+{% block content %}
+
+<div class="card w-50">
+  <h5 class="card-header text-center">{{name}}</h5>
+  <div class="card-body">
+    <table class='table table-bordered table-sm'>
+    <tr>
+      <th scope='row'>Nombre</th>
+      <td>{{name}}</td>
+    </tr>
+    <tr>
+      <th scope='row'>Publicación</th>
+      <td>{{air_date}}</td>
+    </tr>
+    <tr>
+      <th scope='row'>Episodio</th>
+      <td>{{episode}}</td>
+    </tr>
+    <tr>
+      <th scope='row' rowspan={{characters|length|add:'1'}}>Personajes</th>
+    </tr>
+      {% for character in characters %}
+      <tr>
+          <td><a href="{% url 'character' character.id %}">{{character.name}}<a></td>
+      </tr>
+      {% endfor %}
+  </table>
+  </div>
+</div>
+
+
+{% endblock %}
