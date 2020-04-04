@@ -2,7 +2,6 @@
 
 # Rick and Morty Django App
 
-----
 Aplicación basada en Django que entrega información sobre la serie "Rick and Morty" mediante consultas a una API. Se entrega información sobre:
 
 - Episodios
@@ -11,5 +10,4 @@ Aplicación basada en Django que entrega información sobre la serie "Rick and M
 
 ## API
 
-----
 Toda la información desplegada fue obtenida de [The Rick and Morty API](https://rickandmortyapi.com/)
