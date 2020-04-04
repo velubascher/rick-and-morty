@@ -11,3 +11,7 @@ Aplicación basada en Django que entrega información sobre la serie "Rick and M
 ## API
 
 Toda la información desplegada fue obtenida de [The Rick and Morty API](https://rickandmortyapi.com/)
+
+## URL
+
+<https://rick-and-morty-iic3103.herokuapp.com/>
