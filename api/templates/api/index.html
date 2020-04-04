@@ -1,11 +1,12 @@
 {% extends 'api/base.html' %}
 
 {% block content %}
-<div>
-    <h1> Episodios </h1>
 
+<div class="card w-50">
+  <h5 class="card-header text-center">Episodios</h5>
+  <div class="card-body">
     {% if results %}
-        <table class='table table-bordered'>
+        <table class='table table-bordered table-sm'>
         <thead class="thead-dark">
             <tr>
                 <th scope='col'>Nombre</th>
@@ -26,6 +27,7 @@
     {% else %}
         <p>No hay episodios.</p>
     {% endif %}
-</div>
+    </div>
+<div>
 
 {% endblock %}

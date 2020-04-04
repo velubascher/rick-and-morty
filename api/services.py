@@ -33,8 +33,8 @@ def get_character(id):
         episodes_id.append(int(_id))
     episodes = requests.get('https://rickandmortyapi.com/api/episode/{}'.format(str(episodes_id))).json()
     data['episodes'] = episodes
-    data['location']['id'] = data['location']['url'].rsplit('/', 1).pop()
-    data['origin']['id'] = data['origin']['url'].rsplit('/', 1).pop()
+    data['location']['id'] = data['location']['url'].rsplit('/', 1).pop() if data['location']['url'] else ""
+    data['origin']['id'] = data['origin']['url'].rsplit('/', 1).pop() if data['origin']['url'] else ""
     return data
 
 def get_location(id):
@@ -46,6 +46,7 @@ def get_location(id):
 
 def make_search(term):
     characters = requests.get('https://rickandmortyapi.com/api/character/?name={}'.format(term)).json()
+    print(characters)
     locations = requests.get('https://rickandmortyapi.com/api/location/?name={}'.format(term)).json()
     episodes = requests.get('https://rickandmortyapi.com/api/episode/?name={}'.format(term)).json()
     results = {'characters': pagination(characters), 'locations': pagination(locations), 'episodes': pagination(episodes)}

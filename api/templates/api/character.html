@@ -2,44 +2,57 @@
 
 {% block content %}
 
-<img src={{image}} alt={{name}}>
-<table>
-  <tr>
-    <td>Nombre</td>
-    <td>{{name}}</td>
-  </tr>
-  <tr>
-    <td>Estado</td>
-    <td>{{status}}</td>
-  </tr>
-  <tr>
-    <td>Especie</td>
-    <td>{{species}}</td>
-  </tr>
-  <tr>
-    <td>Tipo</td>
-    <td>{{type}}</td>
-  </tr>
-  <tr>
-    <td>Genero</td>
-    <td>{{gender}}</td>
-  </tr>
-  <tr>
-    <td>Origen</td>
-    <td><a href="{% url 'location' origin.id %}">{{origin.name}}</a></td>
-  </tr>
-  <tr>
-    <td>Ubicación</td>
-    <td><a href="{% url 'location' location.id %}">{{location.name}}</a></td>
-  </tr>
-  <tr>
-    <td rowspan={{episode|length|add:'1'}}>Episodios</td>
-  </tr>
-    {% for episode in episodes %}
+<div class="card mx-5">
+  <img src={{image}} class="card-img-top" alt={{name}}>
+  <h5 class="card-header text-center">{{name}}</h5>
+  <div class="card-body">
+    <table class='table table-bordered table-sm'>
     <tr>
-      <td><a href="{% url 'episode' episode.id %}">{{episode.name}}</a></td>
+      <th scope='row'>Nombre</td>
+      <td>{{name}}</td>
     </tr>
-    {% endfor %}
-  </table>
+    <tr>
+      <th scope='row'>Estado</th>
+      <td>{{status}}</td>
+    </tr>
+    <tr>
+      <th scope='row'>Especie</th>
+      <td>{{species}}</td>
+    </tr>
+    <tr>
+      <th scope='row'>Tipo</th>
+      <td>{{type}}</td>
+    </tr>
+    <tr>
+      <th scope='row'>Género</th>
+      <td>{{gender}}</td>
+    </tr>
+    <tr>
+      <th scope='row'>Origen</th>
+      {% if origin.id %}
+        <td><a href="{% url 'location' origin.id %}">{{origin.name}}</a></td>
+      {% else %}
+        <td>unknown</td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th scope='row'>Ubicación</th>
+      {% if location.id %}
+        <td><a href="{% url 'location' location.id %}">{{location.name}}</a></td>
+      {% else %}
+        <td>unknown</td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th scope='row' rowspan={{episode|length|add:'1'}}>Episodios</th>
+    </tr>
+      {% for episode in episodes %}
+      <tr>
+        <td><a href="{% url 'episode' episode.id %}">{{episode.name}}</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
 
 {% endblock %}
