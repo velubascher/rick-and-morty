@@ -1,3 +1,6 @@
+{% extends 'api/base.html' %}
+
+{% block content %}
 <h1> Episodios </h1>
 
 {% if results %}
@@ -18,3 +21,5 @@
 {% else %}
     <p>No hay episodios.</p>
 {% endif %}
+
+{% endblock %}

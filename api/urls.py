@@ -8,5 +8,5 @@ urlpatterns = [
     path('episode/<int:episode_id>/', views.episode, name='episode'),
     path('character/<int:character_id>/', views.character, name='character'),
     path('location/<int:location_id>/', views.location, name='location'),
-    path('search/<term>/', views.search, name='search'),
+    path('search/', views.search, name='search'),
 ]

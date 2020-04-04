@@ -1,3 +1,35 @@
-{% for character in characters %}
-    <p> {{character.name}} </p>
-{% endfor %}
+{% extends 'api/base.html' %}
+
+{% block content %}
+
+<h1>Resultados para "{{term}}"</h1>
+<p>{{total}} resultados</p>
+
+{% if characters %}
+    <h3>Personajes:</h3>
+        <ul>
+        {% for character in characters %}
+            <li><a href="{% url 'character' character.id %}"> {{character.name}} </a></li>
+        {% endfor %}
+        </ul>
+{% endif %}
+
+{% if locations %}
+    <h3>Lugares:</h3>
+        <ul>
+        {% for location in locations %}
+            <li><a href="{% url 'location' location.id %}"> {{location.name}} </a></li>
+        {% endfor %}
+        </ul>
+{% endif %}
+
+{% if episodes %}
+    <h3>Episodios:</h3>
+        <ul>
+        {% for episode in episodes %}
+            <li><a href="{% url 'episode' episode.id %}"> {{episode.name}} </a></li>
+        {% endfor %}
+        </ul>
+{% endif %}
+
+{% endblock %}

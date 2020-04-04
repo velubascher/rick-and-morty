@@ -49,9 +49,14 @@ def make_search(term):
     locations = requests.get('https://rickandmortyapi.com/api/location/?name={}'.format(term)).json()
     episodes = requests.get('https://rickandmortyapi.com/api/episode/?name={}'.format(term)).json()
     results = {'characters': pagination(characters), 'locations': pagination(locations), 'episodes': pagination(episodes)}
+    results['total'] = sum(len(i) for i in results.values())
+    results['term'] = term
     return results
 
 def pagination(object):
+    if 'error' in object.keys():
+        return []
+
     results = object['results']
     _next = object['info']['next']
     while _next:

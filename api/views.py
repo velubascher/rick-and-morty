@@ -20,7 +20,8 @@ def location(request, location_id):
     location = get_location(location_id)
     return render(request, 'api/location.html', location)
 
-def search(request, term):
+def search(request):
+    term = request.GET.get('term')
     results = make_search(term)
     return render(request, 'api/search.html', results)
 
