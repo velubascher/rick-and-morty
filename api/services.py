@@ -40,7 +40,7 @@ def get_character(id):
 def get_location(id):
     data = requests.get('https://rickandmortyapi.com/api/location/{}'.format(id)).json()
     characters_id = list(map(lambda url: int(url.rsplit('/', 1).pop()), data['residents']))
-    characters = get_characters(characters_id)
+    characters = get_characters(characters_id) if characters_id else []
     data['characters'] = characters
     return data
 

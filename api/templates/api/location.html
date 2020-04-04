@@ -18,6 +18,8 @@
       <th scope='row'>Dimensión</th>
       <td>{{dimension}}</td>
     </tr>
+    
+    {% if characters %}
     <tr>
       <th scope='row' rowspan={{characters|length|add:'1'}}>Residentes</th>
     </tr>
@@ -26,6 +28,12 @@
           <td><a href="{% url 'character' resident.id %}">{{resident.name}}<a></td>
       </tr>
       {% endfor %}
+    {% else %}
+      <tr>
+        <th scope='row'>Residentes</th>
+        <td>Sin residentes</td>
+      </tr>
+    {% endif %}
   </table>
   </div>
 </div>
